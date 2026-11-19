@@ -1,0 +1,843 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LeTx Gaming — CS2 киберспортивная команда</title>
+<style>
+
+\&#x20; :root {
+
+\&#x20;   --green: #16c95a;
+
+\&#x20;   --green-dark: #0e7a37;
+
+\&#x20;   --bg: #0b0f0c;
+
+\&#x20;   --bg-soft: #121813;
+
+\&#x20;   --white: #f5f7f5;
+
+\&#x20; }
+
+
+
+\&#x20; \\\* { margin: 0; padding: 0; box-sizing: border-box; }
+
+
+
+\&#x20; body {
+
+\&#x20;   font-family: 'Segoe UI', Arial, sans-serif;
+
+\&#x20;   background: var(--bg);
+
+\&#x20;   color: var(--white);
+
+\&#x20;   min-height: 100vh;
+
+\&#x20; }
+
+
+
+\&#x20; /\\\* ===== ШАПКА ===== \\\*/
+
+\&#x20; header {
+
+\&#x20;   position: sticky;
+
+\&#x20;   top: 0;
+
+\&#x20;   z-index: 100;
+
+\&#x20;   background: rgba(11, 15, 12, 0.95);
+
+\&#x20;   border-bottom: 2px solid var(--green-dark);
+
+\&#x20;   padding: 14px 5%;
+
+\&#x20;   display: flex;
+
+\&#x20;   align-items: center;
+
+\&#x20;   justify-content: space-between;
+
+\&#x20; }
+
+
+
+\&#x20; .logo {
+
+\&#x20;   font-size: 26px;
+
+\&#x20;   font-weight: 800;
+
+\&#x20;   letter-spacing: 2px;
+
+\&#x20;   color: var(--white);
+
+\&#x20;   text-decoration: none;
+
+\&#x20; }
+
+\&#x20; .logo span { color: var(--green); }
+
+
+
+\&#x20; nav ul {
+
+\&#x20;   list-style: none;
+
+\&#x20;   display: flex;
+
+\&#x20;   gap: 28px;
+
+\&#x20; }
+
+
+
+\&#x20; nav > ul > li { position: relative; }
+
+
+
+\&#x20; nav a, .drop-btn {
+
+\&#x20;   color: var(--white);
+
+\&#x20;   text-decoration: none;
+
+\&#x20;   font-size: 16px;
+
+\&#x20;   font-weight: 600;
+
+\&#x20;   padding: 10px 14px;
+
+\&#x20;   display: inline-block;
+
+\&#x20;   cursor: pointer;
+
+\&#x20;   transition: color 0.2s;
+
+\&#x20; }
+
+
+
+\&#x20; nav a:hover, .drop-btn:hover { color: var(--green); }
+
+
+
+\&#x20; nav a.active { color: var(--green); border-bottom: 2px solid var(--green); }
+
+
+
+\&#x20; /\\\* ===== ВЫПАДАЮЩЕЕ МЕНЮ СОСТАВОВ ===== \\\*/
+
+\&#x20; .dropdown { position: relative; }
+
+
+
+\&#x20; .dropdown-content {
+
+\&#x20;   position: absolute;
+
+\&#x20;   top: calc(100% + 6px);
+
+\&#x20;   left: 0;
+
+\&#x20;   background: var(--bg-soft);
+
+\&#x20;   border: 1px solid var(--green-dark);
+
+\&#x20;   border-radius: 8px;
+
+\&#x20;   min-width: 190px;
+
+\&#x20;   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6);
+
+\&#x20;   opacity: 0;
+
+\&#x20;   visibility: hidden;
+
+\&#x20;   transform: translateY(-8px);
+
+\&#x20;   transition: all 0.25s ease;
+
+\&#x20;   z-index: 200;
+
+\&#x20; }
+
+
+
+\&#x20; .dropdown:hover .dropdown-content {
+
+\&#x20;   opacity: 1;
+
+\&#x20;   visibility: visible;
+
+\&#x20;   transform: translateY(0);
+
+\&#x20; }
+
+
+
+\&#x20; .dropdown-content a {
+
+\&#x20;   display: block;
+
+\&#x20;   padding: 12px 18px;
+
+\&#x20;   font-size: 15px;
+
+\&#x20;   border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+
+\&#x20; }
+
+
+
+\&#x20; .dropdown-content a:last-child { border-bottom: none; }
+
+\&#x20; .dropdown-content a:hover {
+
+\&#x20;   background: rgba(22, 201, 90, 0.12);
+
+\&#x20;   color: var(--green);
+
+\&#x20;   padding-left: 24px;
+
+\&#x20; }
+
+
+
+\&#x20; /\\\* ===== СЕКЦИИ (ВКЛАДКИ) ===== \\\*/
+
+\&#x20; main { padding: 0 5% 60px; }
+
+
+
+\&#x20; .tab {
+
+\&#x20;   display: none;
+
+\&#x20;   animation: fadeIn 0.4s ease;
+
+\&#x20; }
+
+\&#x20; .tab.active { display: block; }
+
+
+
+\&#x20; @keyframes fadeIn {
+
+\&#x20;   from { opacity: 0; transform: translateY(12px); }
+
+\&#x20;   to   { opacity: 1; transform: translateY(0); }
+
+\&#x20; }
+
+
+
+\&#x20; /\\\* ===== ГЛАВНАЯ ===== \\\*/
+
+\&#x20; .hero {
+
+\&#x20;   text-align: center;
+
+\&#x20;   padding: 90px 20px 70px;
+
+\&#x20;   background: linear-gradient(180deg, rgba(22, 201, 90, 0.12) 0%, transparent 70%);
+
+\&#x20; }
+
+
+
+\&#x20; .hero h1 {
+
+\&#x20;   font-size: 52px;
+
+\&#x20;   font-weight: 900;
+
+\&#x20;   letter-spacing: 3px;
+
+\&#x20;   text-transform: uppercase;
+
+\&#x20; }
+
+\&#x20; .hero h1 span { color: var(--green); }
+
+
+
+\&#x20; .hero p {
+
+\&#x20;   margin-top: 14px;
+
+\&#x20;   font-size: 20px;
+
+\&#x20;   color: #b9c4bb;
+
+\&#x20; }
+
+
+
+\&#x20; .hero .game-badge {
+
+\&#x20;   display: inline-block;
+
+\&#x20;   margin-top: 26px;
+
+\&#x20;   padding: 10px 28px;
+
+\&#x20;   border: 2px solid var(--green);
+
+\&#x20;   border-radius: 30px;
+
+\&#x20;   font-weight: 700;
+
+\&#x20;   letter-spacing: 2px;
+
+\&#x20;   color: var(--green);
+
+\&#x20; }
+
+
+
+\&#x20; h2.section-title {
+
+\&#x20;   font-size: 30px;
+
+\&#x20;   text-transform: uppercase;
+
+\&#x20;   letter-spacing: 2px;
+
+\&#x20;   margin: 30px 0 24px;
+
+\&#x20;   border-left: 5px solid var(--green);
+
+\&#x20;   padding-left: 14px;
+
+\&#x20; }
+
+
+
+\&#x20; /\\\* ===== КАРТОЧКИ НОВОСТЕЙ ===== \\\*/
+
+\&#x20; .cards {
+
+\&#x20;   display: grid;
+
+\&#x20;   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+
+\&#x20;   gap: 22px;
+
+\&#x20; }
+
+
+
+\&#x20; .card {
+
+\&#x20;   background: var(--bg-soft);
+
+\&#x20;   border: 1px solid rgba(255, 255, 255, 0.07);
+
+\&#x20;   border-radius: 12px;
+
+\&#x20;   padding: 22px;
+
+\&#x20;   transition: transform 0.25s, border-color 0.25s;
+
+\&#x20; }
+
+
+
+\&#x20; .card:hover {
+
+\&#x20;   transform: translateY(-5px);
+
+\&#x20;   border-color: var(--green);
+
+\&#x20; }
+
+
+
+\&#x20; .card .date {
+
+\&#x20;   font-size: 13px;
+
+\&#x20;   color: var(--green);
+
+\&#x20;   font-weight: 700;
+
+\&#x20;   letter-spacing: 1px;
+
+\&#x20; }
+
+
+
+\&#x20; .card h3 { margin: 10px 0 8px; font-size: 19px; }
+
+\&#x20; .card p { font-size: 15px; color: #aab5ac; line-height: 1.5; }
+
+
+
+\&#x20; /\\\* ===== О КОМАНДЕ ===== \\\*/
+
+\&#x20; .about-text {
+
+\&#x20;   max-width: 800px;
+
+\&#x20;   font-size: 17px;
+
+\&#x20;   line-height: 1.7;
+
+\&#x20;   color: #ccd5cd;
+
+\&#x20; }
+
+
+
+\&#x20; .about-text strong { color: var(--green); }
+
+
+
+\&#x20; /\\\* ===== СОСТАВЫ ===== \\\*/
+
+\&#x20; .roster-grid {
+
+\&#x20;   display: grid;
+
+\&#x20;   grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+
+\&#x20;   gap: 22px;
+
+\&#x20;   margin-top: 10px;
+
+\&#x20; }
+
+
+
+\&#x20; .player {
+
+\&#x20;   background: var(--bg-soft);
+
+\&#x20;   border: 1px solid rgba(255, 255, 255, 0.07);
+
+\&#x20;   border-radius: 12px;
+
+\&#x20;   padding: 26px 20px;
+
+\&#x20;   text-align: center;
+
+\&#x20;   transition: transform 0.25s, border-color 0.25s;
+
+\&#x20; }
+
+
+
+\&#x20; .player:hover { transform: translateY(-5px); border-color: var(--green); }
+
+
+
+\&#x20; .player .avatar {
+
+\&#x20;   width: 84px;
+
+\&#x20;   height: 84px;
+
+\&#x20;   border-radius: 50%;
+
+\&#x20;   margin: 0 auto 14px;
+
+\&#x20;   background: linear-gradient(135deg, var(--green-dark), var(--green));
+
+\&#x20;   display: flex;
+
+\&#x20;   align-items: center;
+
+\&#x20;   justify-content: center;
+
+\&#x20;   font-size: 30px;
+
+\&#x20;   font-weight: 800;
+
+\&#x20;   color: var(--white);
+
+\&#x20; }
+
+
+
+\&#x20; .player .nick { font-size: 20px; font-weight: 800; letter-spacing: 1px; }
+
+\&#x20; .player .role { font-size: 14px; color: var(--green); margin-top: 5px; font-weight: 600; }
+
+\&#x20; .player .stat { font-size: 13px; color: #9aa79c; margin-top: 8px; }
+
+
+
+\&#x20; /\\\* ===== ФУТЕР ===== \\\*/
+
+\&#x20; footer {
+
+\&#x20;   border-top: 2px solid var(--green-dark);
+
+\&#x20;   padding: 26px 5%;
+
+\&#x20;   text-align: center;
+
+\&#x20;   color: #8b968d;
+
+\&#x20;   font-size: 14px;
+
+\&#x20; }
+
+
+
+\&#x20; footer .socials { margin-top: 10px; }
+
+\&#x20; footer .socials a {
+
+\&#x20;   color: var(--white);
+
+\&#x20;   text-decoration: none;
+
+\&#x20;   margin: 0 12px;
+
+\&#x20;   font-weight: 600;
+
+\&#x20; }
+
+\&#x20; footer .socials a:hover { color: var(--green); }
+
+
+
+\&#x20; /\\\* ===== АДАПТИВ ===== \\\*/
+
+\&#x20; @media (max-width: 720px) {
+
+\&#x20;   header { flex-direction: column; gap: 10px; }
+
+\&#x20;   nav ul { gap: 10px; flex-wrap: wrap; justify-content: center; }
+
+\&#x20;   .hero h1 { font-size: 34px; }
+
+\&#x20; }
+
+
+</head>
+
+<body>
+
+
+
+<header>
+
+&#x20; <a href="#" class="logo" onclick="showTab('home')">LeTx <span>gaming</span></a>
+
+&#x20; <nav>
+
+&#x20;   <ul>
+
+&#x20;     <li><a href="#" id="nav-home" class="active" onclick="showTab('home'); return false;">Главная</a></li>
+
+&#x20;     <li><a href="#" id="nav-news" onclick="showTab('news'); return false;">Новости</a></li>
+
+&#x20;     <li><a href="#" id="nav-about" onclick="showTab('about'); return false;">О команде</a></li>
+
+&#x20;     <li class="dropdown">
+
+&#x20;       <span class="drop-btn">Составы ▾</span>
+
+&#x20;       <div class="dropdown-content">
+
+&#x20;         <a href="#" onclick="showTab('main-roster'); return false;">1 — Основа</a>
+
+&#x20;         <a href="#" onclick="showTab('prospect'); return false;">2 — Проспект</a>
+
+&#x20;         <a href="#" onclick="showTab('academy'); return false;">3 — Академия</a>
+
+&#x20;       </div>
+
+&#x20;     </li>
+
+&#x20;   </ul>
+
+&#x20; </nav>
+
+</header>
+
+
+
+<main>
+
+
+
+&#x20; <!-- ===== ГЛАВНАЯ ===== -->
+
+&#x20; <section id="tab-home" class="tab active">
+
+&#x20;   <div class="hero">
+
+&#x20;     <h1>LeTx <span>gaming</span></h1>
+
+&#x20;     <p>Киберспортивная команда по Counter-Strike 2</p>
+
+&#x20;     <div class="game-badge">CS2</div>
+
+&#x20;   </div>
+
+
+
+&#x20;   <h2 class="section-title">Ближайшие матчи</h2>
+
+&#x20;   <div class="cards">
+
+&#x20;     <div class="card">
+
+&#x20;       <div class="date">29 НОЯБРЯ · 18:00</div>
+
+&#x20;       <h3>LeTx Gaming vs Team Rival</h3>
+
+&#x20;       <p>Открытая квалификация осеннего сезона. Формат: Bo3.</p>
+
+&#x20;     </div>
+
+&#x20;     <div class="card">
+
+&#x20;       <div class="date">5 ДЕКАБРЯ · 20:00</div>
+
+&#x20;       <h3>LeTx Gaming vs Green Storm</h3>
+
+&#x20;       <p>Групповой этап лиги. Смотрите трансляцию на нашем канале.</p>
+
+&#x20;     </div>
+
+&#x20;     <div class="card">
+
+&#x20;       <div class="date">12 ДЕКАБРЯ · 19:00</div>
+
+&#x20;       <h3>LeTx Gaming vs Night Wolves</h3>
+
+&#x20;       <p>Товарищеский матч. Bo1, онлайн.</p>
+
+&#x20;     </div>
+
+&#x20;   </div>
+
+&#x20; </section>
+
+
+
+&#x20; <!-- ===== НОВОСТИ ===== -->
+
+&#x20; <section id="tab-news" class="tab">
+
+&#x20;   <h2 class="section-title">Новости</h2>
+
+&#x20;   <div class="cards">
+
+&#x20;     <div class="card">
+
+&#x20;       <div class="date">18 НОЯБРЯ 2026</div>
+
+&#x20;       <h3>Обновление составов</h3>
+
+&#x20;       <p>Академия LeTx Gaming объявила набор новых игроков. Подробности в нашем Discord-канале.</p>
+
+&#x20;     </div>
+
+&#x20;     <div class="card">
+
+&#x20;       <div class="date">10 НОЯБРЯ 2026</div>
+
+&#x20;       <h3>Победа на квалификации</h3>
+
+&#x20;       <p>Основа команды обыграла соперников со счётом 2:0 и прошла в следующий этап турнира.</p>
+
+&#x20;     </div>
+
+&#x20;     <div class="card">
+
+&#x20;       <div class="date">1 НОЯБРЯ 2026</div>
+
+&#x20;       <h3>Новые тренировочные буткемпы</h3>
+
+&#x20;       <p>Мы переехали в новый игровой дом и усилили график тренировок до 6 дней в неделю.</p>
+
+&#x20;     </div>
+
+&#x20;   </div>
+
+&#x20; </section>
+
+
+
+&#x20; <!-- ===== О КОМАНДЕ ===== -->
+
+&#x20; <section id="tab-about" class="tab">
+
+&#x20;   <h2 class="section-title">О команде</h2>
+
+&#x20;   <p class="about-text">
+
+&#x20;     <strong>LeTx Gaming</strong> — киберспортивная организация, выступающая в дисциплине
+
+&#x20;     <strong>Counter-Strike 2</strong>. Наша цель — выращивать сильных игроков с нуля:
+
+&#x20;     от академии до основной пятёрки, которая борется за места в крупных турнирах.
+
+
+
+&#x20;     Мы верим в дисциплину, системные тренировки и здоровую атмосферу внутри команды.
+
+&#x20;     В структуре — три состава: <strong>Основа</strong> (главная пятёрка),
+
+&#x20;     <strong>Проспект</strong> (резерв и кандидаты в основу) и <strong>Академия</strong>
+
+&#x20;     (молодые таланты, которых мы готовим сами).
+
+
+
+&#x20;     Следите за нашими матчами, поддерживайте игроков и станьте частью LeTx family.
+
+&#x20;   </p>
+
+&#x20; </section>
+
+
+
+&#x20; <!-- ===== ОСНОВА ===== -->
+
+&#x20; <section id="tab-main-roster" class="tab">
+
+&#x20;   <h2 class="section-title">Состав: Основа</h2>
+
+&#x20;   <div class="roster-grid">
+
+&#x20;     <div class="player"><div class="avatar">A</div><div class="nick">Player1</div><div class="role">Капитан / IGL</div><div class="stat">K/D: 1.05 · Rating: 1.02</div></div>
+
+&#x20;     <div class="player"><div class="avatar">B</div><div class="nick">Player2</div><div class="role">AWPer</div><div class="stat">K/D: 1.28 · Rating: 1.19</div></div>
+
+&#x20;     <div class="player"><div class="avatar">C</div><div class="nick">Player3</div><div class="role">Entry Fragger</div><div class="stat">K/D: 1.12 · Rating: 1.08</div></div>
+
+&#x20;     <div class="player"><div class="avatar">D</div><div class="nick">Player4</div><div class="role">Rifler</div><div class="stat">K/D: 1.09 · Rating: 1.05</div></div>
+
+&#x20;     <div class="player"><div class="avatar">E</div><div class="nick">Player5</div><div class="role">Support / Lurker</div><div class="stat">K/D: 0.98 · Rating: 1.00</div></div>
+
+&#x20;   </div>
+
+&#x20; </section>
+
+
+
+&#x20; <!-- ===== ПРОСПЕКТ ===== -->
+
+&#x20; <section id="tab-prospect" class="tab">
+
+&#x20;   <h2 class="section-title">Состав: Проспект</h2>
+
+&#x20;   <div class="roster-grid">
+
+&#x20;     <div class="player"><div class="avatar">F</div><div class="nick">Player6</div><div class="role">IGL</div><div class="stat">K/D: 1.01 · Rating: 0.99</div></div>
+
+&#x20;     <div class="player"><div class="avatar">G</div><div class="nick">Player7</div><div class="role">AWPer</div><div class="stat">K/D: 1.15 · Rating: 1.10</div></div>
+
+&#x20;     <div class="player"><div class="avatar">H</div><div class="nick">Player8</div><div class="role">Rifler</div><div class="stat">K/D: 1.07 · Rating: 1.04</div></div>
+
+&#x20;   </div>
+
+&#x20; </section>
+
+
+
+&#x20; <!-- ===== АКАДЕМИЯ ===== -->
+
+&#x20; <section id="tab-academy" class="tab">
+
+&#x20;   <h2 class="section-title">Состав: Академия</h2>
+
+&#x20;   <div class="roster-grid">
+
+&#x20;     <div class="player"><div class="avatar">I</div><div class="nick">Player9</div><div class="role">Rifler</div><div class="stat">Возраст: 16 · Стаж: 1 год</div></div>
+
+&#x20;     <div class="player"><div class="avatar">J</div><div class="nick">Player10</div><div class="role">AWPer</div><div class="stat">Возраст: 17 · Стаж: 2 года</div></div>
+
+&#x20;     <div class="player"><div class="avatar">K</div><div class="nick">Player11</div><div class="role">IGL</div><div class="stat">Возраст: 16 · Стаж: 1 год</div></div>
+
+&#x20;   </div>
+
+&#x20; </section>
+
+
+
+</main>
+
+
+
+<footer>
+
+&#x20; © 2026 LeTx Gaming. Все права защищены.
+
+&#x20; <div class="socials">
+
+&#x20;   <a href="#">Discord</a>
+
+&#x20;   <a href="#">Telegram</a>
+
+&#x20;   <a href="#">Twitch</a>
+
+&#x20;   <a href="#">YouTube</a>
+
+&#x20; </div>
+
+</footer>
+
+
+
+<script>
+
+\&#x20; function showTab(tabName) {
+
+\&#x20;   // Скрываем все вкладки
+
+\&#x20;   document.querySelectorAll('.tab').forEach(function (t) {
+
+\&#x20;     t.classList.remove('active');
+
+\&#x20;   });
+
+\&#x20;   // Показываем нужную
+
+\&#x20;   var target = document.getElementById('tab-' + tabName);
+
+\&#x20;   if (target) target.classList.add('active');
+
+
+
+\&#x20;   // Подсветка активного пункта меню
+
+\&#x20;   document.querySelectorAll('nav > ul > li > a').forEach(function (a) {
+
+\&#x20;     a.classList.remove('active');
+
+\&#x20;   });
+
+\&#x20;   var map = { home: 'nav-home', news: 'nav-news', about: 'nav-about' };
+
+\&#x20;   if (map\\\[tabName]) {
+
+\&#x20;     document.getElementById(map\\\[tabName]).classList.add('active');
+
+\&#x20;   }
+
+
+
+\&#x20;   // Прокрутка вверх при смене вкладки
+
+\&#x20;   window.scrollTo({ top: 0, behavior: 'smooth' });
+
+\&#x20; }
+
+
+
+
+</body>
+
+</html>
